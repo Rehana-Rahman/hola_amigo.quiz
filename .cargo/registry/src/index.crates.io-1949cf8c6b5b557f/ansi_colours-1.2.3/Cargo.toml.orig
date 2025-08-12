@@ -1,0 +1,43 @@
+[package]
+name          = "ansi_colours"
+description   = "true-colour ↔ ANSI terminal palette converter"
+version       = "1.2.3"
+readme        = "README.md"
+authors       = ["Michał Nazarewicz <mina86@mina86.com>"]
+keywords      = ["ansi", "terminal", "color", "rgb"]
+categories    = ["command-line-interface"]
+license       = "LGPL-3.0-or-later"
+repository    = "https://github.com/mina86/ansi_colours"
+documentation = "https://docs.rs/ansi_colours"
+exclude       = ["tools/**"]
+edition       = "2018"
+
+[package.metadata.docs.rs]
+all-features = true
+
+[badges]
+maintenance = { status = "actively-developed" }
+
+[dependencies]
+ansi_term = { version = "0.12", optional = true }
+anstyle = { version = "1", optional = true }
+rgb = { version = "0.8", optional = true }
+termcolor = { version = ">= 1.0, <= 1.2", optional = true }
+
+[features]
+default = ["rgb"]
+
+[dev-dependencies]
+crc64 = "2"
+criterion = { version = "0.5", default-features = false }
+empfindung = "0.2.6"
+lab = ">=0.4, <1.0"
+rgb = "0.8"
+
+[profile.release]
+lto = true
+panic = 'abort'
+
+[[bench]]
+name = "ansi256"
+harness = false
